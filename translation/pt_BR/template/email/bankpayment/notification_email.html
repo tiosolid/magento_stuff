@@ -1,0 +1,37 @@
+<div style="font:11px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+  <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+    <tr>
+      <td align="center" valign="top">
+        <!-- [ header starts here] -->
+          <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+              <td valign="top">
+                <p>
+					<a href="{{store url=""}}" style="color:#1E7EC8;">
+						<img src="{{skin url="images/logo_email.gif" _area='frontend'}}" alt="Store Logo" border="0"/>
+					</a>
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- [ middle starts here] -->
+          <table cellspacing="0" cellpadding="0" border="0" width="650">
+            <tr>
+              <td valign="top">
+                <p>
+                <strong>Ol&#225; {{var recipientName}}</strong>,<br/>
+				Um novo pagamento com os seguintes dados foi confirmado:
+				{{var confirmationData }}
+                </p>
+				<p>
+				Voc&#234; pode obter maiores informa&#231;&#245;es sobre esse pedido no <a href="{{var adminOrderUrl}}">painel de administra&#231;&#227;o da loja</a>.
+				</p>
+              </td>
+            </tr>
+          </table>
+
+      </td>
+    </tr>
+  </table>
+</div>

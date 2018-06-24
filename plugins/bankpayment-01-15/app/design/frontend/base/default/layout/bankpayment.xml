@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <bankpayment_order_confirm>
+        <reference name="content">
+            <block type="bankpayment/confirm" name="bankpayment" template="bankpayment/confirm.phtml" />
+        </reference>
+    </bankpayment_order_confirm>
+
+	<sales_order_history> 
+		<reference name="sales.order.history"> 
+			<action method="setTemplate"><template>bankpayment/sales/order/history.phtml</template></action> 
+		</reference> 
+	</sales_order_history> 
+	
+	<customer_account_index> 
+		<reference name="customer_account_dashboard_top">
+			<action method="setTemplate"><template>bankpayment/sales/order/recent.phtml</template></action>
+		</reference>
+	</customer_account_index>	
+</layout> 

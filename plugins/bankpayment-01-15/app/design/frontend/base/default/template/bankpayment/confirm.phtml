@@ -1,0 +1,122 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $order = $this->getOrder(); ?>
+<div class="page-head">
+    <h3><?php echo $this->__('Confirmation for Order'); ?> <?php echo $order->getIncrementId(); ?></h3>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<form id="form-validate" method="post" action="<?php echo $this->getConfirmationUrl($order->getId()); ?>">						
+	<div class="fieldset">
+		<?php echo $this->getBlockHtml('formkey')?>
+		<h2 class="legend"><?php echo $this->__('Confirmation Data') ?></h2>
+		<ul class="form-list">
+			<li class="wide">
+				<label for="name" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+				<div class="input-box">
+					<input type="text" name="name" id="name" title="<?php echo $this->__('Name') ?>" class="input-text required-entry" />
+				</div>
+			</li>
+			<li class="fields">
+				<div class="field">
+					<label for="transfer_number" class="required"><em>*</em><?php echo $this->__('Transfer Number') ?></label>
+					<div class="input-box">
+						<input type="text" name="transfer_number" title="<?php echo $this->__('Transfer Number') ?>" class="input-text required-entry" id="tansfer_number" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="value" class="required"><em>*</em><?php echo $this->__('Value') ?></label>
+					<div class="input-box">
+						<input type="text" name="value" id="value" title="<?php echo $this->__('Value') ?>" class="input-text validate-currency-dollar required-entry" />
+					</div>
+				</div>
+			</li>
+			<li class="fields">
+				<div class="field">
+					<label for="transfer_time" class="required"><em>*</em><?php echo $this->__('Transfer Time') ?></label>
+					<div class="input-box">
+						<input type="text" name="transfer_time" title="<?php echo $this->__('Transfer Time') ?>" class="input-text required-entry" id="telephone" />
+					</div>
+				</div>
+				<div class="field">
+					<label for="transfer_date" class="required"><em>*</em><?php echo $this->__('Transfer Date') ?></label>
+					<div class="input-box">
+						<input type="text" name="transfer_date" id="transfer_date" title="<?php echo $this->__('Transfer Date') ?>" class="input-text validate-date-au required-entry" />
+					</div>
+				</div>
+			</li>
+			<?php
+			$types = $this->getConfirmationType();
+			if ($types != null) {
+			?>
+			<li class="fields">
+				<div class="field">
+					<label for="type" class="required"><em>*</em><?php echo $this->__('Transfer Type') ?></label>
+					<div class="select">
+						<select name="type" title="<?php echo $this->__('Transfer Type') ?>" class="required-entry" id="type">
+							<?php foreach ($types as $type) { ?>
+							<option value="<?php echo $type['value']; ?>"><?php echo $type['label']; ?></option>									
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+			</li>
+			<?php } ?>
+			<?php 
+			$accounts = $this->getBankAccount();
+			if ($accounts != null) {
+			?>
+			<li class="fields">
+				<div class="field">
+					<label for="account" class="required"><em>*</em><?php echo $this->__('Bank Account') ?></label>
+					<div class="select">
+						<select name="account" title="<?php echo $this->__('Bank Account') ?>" class="required-entry" id="account">
+							<?php foreach ($accounts as $account) { ?>
+							<option value="<?php echo $account->getBankName(); ?>"><?php echo $account->getBankName(); ?></option>									
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+			</li>
+			<?php } ?>
+			<li class="wide">
+				<label for="notes"><?php echo $this->__('Notes') ?></label>
+				<div class="input-box">
+					<textarea rows="5" cols="50" name="notes" id="notes" title="<?php echo $this->__('Notes') ?>" class="input-text" /></textarea>
+				</div>
+			</li>					
+		</ul>				
+	</div>
+	<div class="buttons-set">
+		<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+		<input type="hidden" name="order_id" value="<?php echo $order->getId(); ?>" />
+		<p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
+		<button type="submit" title="<?php echo $this->__('Confirm') ?>" class="button"><span><span><?php echo $this->__('Confirm') ?></span></span></button>
+	</div>
+</form>
+<script type="text/javascript">
+    var dataForm = new VarienForm('form-validate', true);
+</script>
